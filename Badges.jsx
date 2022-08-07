@@ -1,5 +1,10 @@
-const { Clickable, Tooltip } = require('powercord/components');
-const { React, getModule } = require('powercord/webpack');
+const { Clickable, Tooltip, Icons: { badges: BadgeIcons }  } = require('powercord/components');
+
+const { gotoOrJoinServer } = require('powercord/util');
+const { shell: { openExternal } } = require('electron');
+const { WEBSITE, I18N_WEBSITE, DISCORD_INVITE, REPO_URL } = require('powercord/constants');
+
+const { React, getModule, i18n: { Messages } } = require('powercord/webpack');
 
 
 const Base = React.memo(({ color, tooltip, tooltipPosition, onClick, className, children, gap }) => {
@@ -18,7 +23,8 @@ const Base = React.memo(({ color, tooltip, tooltipPosition, onClick, className, 
 const Custom = React.memo(({ name, icon, tooltipPosition, gap }) => (
   <Base
     tooltipPosition={tooltipPosition}
-    className='global-badge-custom'
+    onClick={() => openModal(DonateModal)}
+    className='powercord-badge-cutie'
     tooltip={name}
     gap={gap}
   >
@@ -26,6 +32,7 @@ const Custom = React.memo(({ name, icon, tooltipPosition, gap }) => (
   </Base>
 ));
 
+
 module.exports = {
-  Custom
+  Custom,
 };
