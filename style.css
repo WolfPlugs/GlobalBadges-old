@@ -1,17 +1,17 @@
-.powercord-badge:not(img):before {
+.gb-badge:not(img):before {
     content: none;
   }
   
-  .powercord-badge-wrapper {
+  .gb-badge-wrapper {
     margin-right: 0;
   }
   
-  .powercord-badge {
+  .gb-badge {
     box-sizing: border-box;
     padding: 3px;
   }
   
-  .powercord-badge-custom img {
+  .gb-badge-bdb img {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -32,13 +32,13 @@
   top: 1px;
 }
 
-.header-3OsQeK .powercord-badge.powercord-badge-cutie,
-.header-3OsQeK .powercord-badge.powercord-badge-cutie img {
+.header-3OsQeK .powercord-badge.powercord-badge-bdb,
+.header-3OsQeK .powercord-badge.powercord-badge-bdb img {
   width: 18px;
   height: 18px;
 }
 
-.tooltip-14MtrL .rowGuildName-21wur6 .powercord-badge-cutie {
+.tooltip-14MtrL .rowGuildName-21wur6 .powercord-badge-bdb {
   width: 20px;
   height: 20px;
   margin-right: 4px;

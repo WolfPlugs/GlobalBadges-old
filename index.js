@@ -46,12 +46,12 @@ async injectUsers () {
     const userId = props.user.id;
       React.useEffect(async () => {
         if (!cache[userId] || cache[userId].lastFetch < Date.now() - REFRESH_INTERVAL) {
-        cache[userId] = await get(`https://api.obamabot.cf/v2/text/data`)
+        cache[userId] = await get(`https://api.obamabot.cf/v2/text/badges?user=${userId}`)
           .catch((e) => e)
           .then((res) => {
             if (res.statusCode === 200 || res.statusCode === 404) {
               return{
-                badges: res.body.badges || {},
+                badges: res.body || {},
                 lastFetch: Date.now()
               };
             }
@@ -73,14 +73,21 @@ async injectUsers () {
 
     const render = (Component, key, props = {}) => (
       React.createElement(Component, {
-        key: `pc-${key}`,
+        key: `gb-${key}`,
         color: badges.custom && badges.custom.color,
         ...props
       })
     );
 
-    if (badges.custom && badges.custom.name && badges.custom.icon) {
-      res.props.children.push(render(Badges.Custom, 'cutie', badges.custom));
+    if (badges.BDB && badges.BDB.name && badges.BDB.img) {
+      res.props.children.push(render(Badges.BDB, 'bdb', badges.BDB));
+    }
+
+    // Contributor
+    if (badges.aliucord && badges.aliucord.find(r => r == 'contributor')) {
+      const con = badges.aliucord.find(r => r == 'contributor')
+
+      res.props.children.push(render(con, 'aliucordContributor', con));
     }
 
     return res;
