@@ -1,8 +1,6 @@
 const { shell: { openExternal } } = require('electron');
-const { gotoOrJoinServer } = require('powercord/util');
 const { Clickable, Tooltip, Icons: { badges: BadgeIcons } } = require('powercord/components');
 const { React, getModule, i18n: { Messages } } = require('powercord/webpack');
-const { WEBSITE, I18N_WEBSITE, DISCORD_INVITE, REPO_URL } = require('powercord/constants');
 
 
 const Base = React.memo(({ color, tooltip, tooltipPosition, onClick, className, children, gap }) => {
@@ -18,102 +16,17 @@ const Base = React.memo(({ color, tooltip, tooltipPosition, onClick, className, 
   );
 });
 
-
-const Developer = React.memo(({ color }) => (
+const Custom = React.memo(({ name, icon, tooltipPosition, gap }) => (
   <Base
-    onClick={() => openExternal(`${WEBSITE}/contributors`)}
-    className='powercord-badge-developer'
-    tooltip={Messages.REPLUGGED_BADGES_DEVELOPER}
-    color={color}
+    tooltipPosition={tooltipPosition}
+    className='global-badge-custom'
+    tooltip={name}
+    gap={gap}
   >
-    <BadgeIcons.Developer/>
-  </Base>
-));
-
-const Staff = React.memo(({ color }) => (
-  <Base
-    onClick={() => gotoOrJoinServer(DISCORD_INVITE)}
-    className='powercord-badge-staff'
-    tooltip={Messages.REPLUGGED_BADGES_STAFF}
-    color={color}
-  >
-    <BadgeIcons.Staff/>
-  </Base>
-));
-
-const Support = React.memo(({ color }) => (
-  <Base
-    onClick={() => gotoOrJoinServer(DISCORD_INVITE)}
-    className='powercord-badge-support'
-    tooltip={Messages.REPLUGGED_BADGES_SUPPORT}
-    color={color}
-  >
-    <BadgeIcons.Support/>
-  </Base>
-));
-
-const Contributor = React.memo(({ color }) => (
-  <Base
-    onClick={() => openExternal(`${WEBSITE}/contributors`)}
-    className='powercord-badge-contributor'
-    tooltip={Messages.REPLUGGED_BADGES_CONTRIBUTOR}
-    color={color}
-  >
-    <BadgeIcons.Contributor/>
-  </Base>
-));
-
-const Translator = React.memo(({ color }) => ( // @todo: flag
-  <Base
-    onClick={() => openExternal(I18N_WEBSITE)}
-    className='powercord-badge-translator'
-    tooltip={Messages.REPLUGGED_BADGES_TRANSLATOR}
-    color={color}
-  >
-    <BadgeIcons.Translator/>
-  </Base>
-));
-
-const BugHunter = React.memo(({ color }) => (
-  <Base
-    onClick={() => openExternal(`https://github.com/${REPO_URL}/issues?q=label:bug`)}
-    className='powercord-badge-hunter'
-    tooltip={Messages.REPLUGGED_BADGES_HUNTER}
-    color={color}
-  >
-    <BadgeIcons.Hunter/>
-  </Base>
-));
-
-const EarlyUser = React.memo(({ color }) => (
-  <Base
-    className='powercord-badge-early'
-    tooltip={Messages.REPLUGGED_BADGES_EARLY}
-    color={color}
-  >
-    <BadgeIcons.Early/>
-  </Base>
-));
-
-const Booster = React.memo(({ color }) => (
-  <Base
-    onClick={() => gotoOrJoinServer(DISCORD_INVITE)}
-    className='powercord-badge-booster'
-    tooltip={Messages.REPLUGGED_BADGES_BOOSTER}
-    color={color}
-  >
-    <BadgeIcons.Booster/>
+    <img src={icon} alt='Custom badge'/>
   </Base>
 ));
 
 module.exports = {
-  Custom,
-  Developer,
-  Staff,
-  Support,
-  Contributor,
-  Translator,
-  BugHunter,
-  EarlyUser,
-  Booster
+  Custom
 };

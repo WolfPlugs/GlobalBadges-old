@@ -6,7 +6,10 @@ const { inject, uninject } = require('powercord/injector');
 const { get } = require('powercord/http');
 
 const { loadStyle, unloadStyle } = require('./util');
-// const Badges = require('./Badges');
+const Badges = require('./Badges');
+
+const cache = { _guilds: {} };
+const REFRESH_INTERVAL = 1000 * 60 * 30;
 
 module.exports = class GlobalBadges extends Plugin {
 
@@ -18,9 +21,9 @@ module.exports = class GlobalBadges extends Plugin {
         const styleId = loadStyle(join(__dirname, 'style.css'));
     
         unloadStyle(styleId);
-        uninject('pc-badges-users-render');
-        uninject('pc-badges-users-update');
-        uninject('pc-badges-users-fetch');
+        uninject('gb-badges-users-render');
+        uninject('gb-badges-users-update');
+        uninject('gb-badges-users-fetch');
     
         const containerClasses = getModule([ 'subscribeTooltipText' ], false);
         const modalClasses = getModule([ 'topSectionNormal' ], false);
@@ -38,24 +41,30 @@ module.exports = class GlobalBadges extends Plugin {
 
 async injectUsers () {
   const UserProfileBadgeList = getAllModules((m) => m.default?.displayName === 'UserProfileBadgeList')[1]; // Discord have two identical components but only 2nd is actually used?
-  inject('pc-badges-users', UserProfileBadgeList, 'default', ([ props ], res) => {
+  inject('gb-badges-users', UserProfileBadgeList, 'default', ([ props ], res) => {
     const [ badges, setBadges ] = React.useState(null);
-    React.useEffect(() => {
-      if (!cache[props.user.id]) {
-        const baseUrl = `https://api.obamabot.cf/v2/text/data`;
-        cache[props.user.id] = get(`${baseUrl}`)
+    const userId = props.user.id;
+      React.useEffect(async () => {
+        if (!cache[userId] || cache[userId].lastFetch < Date.now() - REFRESH_INTERVAL) {
+        cache[userId] = await get(`https://api.obamabot.cf/v2/text/data`)
           .catch((e) => e)
           .then((res) => {
             if (res.statusCode === 200 || res.statusCode === 404) {
-              return res.body.badges || {};
+              return{
+                badges: res.body.badges || {},
+                lastFetch: Date.now()
+              };
             }
 
-            delete cache[props.user.id];
-            return {};
+            delete cache[userId];
+            return {
+              badges: {},
+              lastFetch: Date.now()
+            };
           });
       }
 
-      cache[props.user.id].then((b) => setBadges(b));
+      setBadges(cache[userId].badges);
     }, []);
 
     if (!badges) {
@@ -72,30 +81,6 @@ async injectUsers () {
 
     if (badges.custom && badges.custom.name && badges.custom.icon) {
       res.props.children.push(render(Badges.Custom, 'cutie', badges.custom));
-    }
-    if (badges.developer) {
-      res.props.children.push(render(Badges.Developer, 'developer'));
-    }
-    if (badges.staff) {
-      res.props.children.push(render(Badges.Staff, 'staff'));
-    }
-    if (badges.support) {
-      res.props.children.push(render(Badges.Support, 'support'));
-    }
-    if (badges.contributor) {
-      res.props.children.push(render(Badges.Contributor, 'contributor'));
-    }
-    if (badges.translator) {
-      res.props.children.push(render(Badges.Translator, 'translator'));
-    }
-    if (badges.hunter) {
-      res.props.children.push(render(Badges.BugHunter, 'hunter'));
-    }
-    if (badges.early) {
-      res.props.children.push(render(Badges.EarlyUser, 'early'));
-    }
-    if (badges.booster) {
-      res.props.children.push(render(Badges.Booster, 'booster'));
     }
 
     return res;
