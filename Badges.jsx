@@ -1,6 +1,5 @@
-const { shell: { openExternal } } = require('electron');
-const { Clickable, Tooltip, Icons: { badges: BadgeIcons } } = require('powercord/components');
-const { React, getModule, i18n: { Messages } } = require('powercord/webpack');
+const { Clickable, Tooltip } = require('powercord/components');
+const { React, getModule } = require('powercord/webpack');
 
 
 const Base = React.memo(({ color, tooltip, tooltipPosition, onClick, className, children, gap }) => {

@@ -1,6 +1,6 @@
 const { Plugin } = require('powercord/entities');
 const { join } = require('path');
-const { React, getModule, getAllModules, getModuleByDisplayName } = require('powercord/webpack');
+const { React, getModule, getAllModules } = require('powercord/webpack');
 const { forceUpdateElement, getOwnerInstance } = require('powercord/util');
 const { inject, uninject } = require('powercord/injector');
 const { get } = require('powercord/http');
@@ -88,6 +88,5 @@ async injectUsers () {
 
   UserProfileBadgeList.default.displayName = 'UserProfileBadgeList';
 }
-
 
 }
