@@ -42,10 +42,12 @@ module.exports = class GlobalBadges extends Plugin {
     }
 
 async injectUsers () {
+
   const UserProfileBadgeList = getAllModules((m) => m.default?.displayName === 'UserProfileBadgeList')[1]; // Discord have two identical components but only 2nd is actually used?
   inject('gb-badges-users', UserProfileBadgeList, 'default', ([ props ], res) => {
     const [ badges, setBadges ] = React.useState(null);
     const userId = props.user.id;
+    
       React.useEffect(async () => {
         if (!cache[userId] || cache[userId].lastFetch < Date.now() - REFRESH_INTERVAL) {
         cache[userId] = await get(`https://api.obamabot.cf/v2/text/badges?user=${userId}`)
@@ -76,7 +78,6 @@ async injectUsers () {
     const render = (Component, key, props = {}) => (
       React.createElement(Component, {
         key: `gb-${key}`,
-        // color: badges.custom && badges.custom.color,
         ...props
       })
     );
@@ -87,13 +88,17 @@ async injectUsers () {
 
     // Aliucord Contributor
     if (badges.aliucord && badges.aliucord.find(r => r == 'contributor')) {
-      const con = badges.aliucord.find(r => r == 'contributor')
-      res.props.children.push(render(Badges.aliucordContr, 'aliucordContributor'));
+-      res.props.children.push(render(Badges.aliucordContr, 'aliucordContributor'));
     }
 
     // Aliucord Donor
     if (badges.aliucord && badges.aliucord.find(r => r == 'donor')) {
       res.props.children.push(render(Badges.aliucordDono, 'aliucordDonor'));
+    }
+
+    // BD Devs
+    if (badges.BD) {
+      res.props.children.push(render(Badges.BDDevs, 'BDDevs'));
     }
 
     return res;

@@ -1,5 +1,5 @@
-const { Clickable, Tooltip, Icons: { badges: BadgeIcons }  } = require('powercord/components');
-
+const { Clickable, Tooltip  } = require('powercord/components');
+const Icons = require("./Icons/") ;
 
 const { React, getModule } = require('powercord/webpack');
 
@@ -65,9 +65,22 @@ const aliucordDono = React.memo(({ tooltipPosition, gap }) => (
   </Base>
 ));
 
+const BDDevs = React.memo(({ tooltipPosition, gap }) => (
+  <Base
+    tooltipPosition={tooltipPosition}
+    onClick={(() => void 0)}
+    className='gb-badge-BDDevs'
+    tooltip='BetterDiscord Developer'
+    gap={gap}
+  >
+    <Icons.bdlogo/>
+  </Base>
+));
+
 module.exports = {
   BDB,
   // aliucordDev,
+  BDDevs,
   aliucordContr,
   aliucordDono
 };
