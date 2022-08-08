@@ -1,10 +1,7 @@
 const { Clickable, Tooltip, Icons: { badges: BadgeIcons }  } = require('powercord/components');
 
-const { gotoOrJoinServer } = require('powercord/util');
-const { shell: { openExternal } } = require('electron');
-const { WEBSITE, I18N_WEBSITE, DISCORD_INVITE, REPO_URL } = require('powercord/constants');
 
-const { React, getModule, i18n: { Messages } } = require('powercord/webpack');
+const { React, getModule } = require('powercord/webpack');
 
 
 const Base = React.memo(({ color, tooltip, tooltipPosition, onClick, className, children, gap }) => {
@@ -28,7 +25,7 @@ const BDB = React.memo(({ name, img, tooltipPosition, gap }) => (
     tooltip={name}
     gap={gap}
   >
-    <img src={img} alt='Custom badge'/>
+    <img src={img} alt='BDB Badge'/>
   </Base>
 ));
 
