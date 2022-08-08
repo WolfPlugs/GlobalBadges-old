@@ -15,13 +15,11 @@ module.exports = class GlobalBadges extends Plugin {
 
     startPlugin() {
         this.injectUsers();
-        loadStyle(join(__dirname, 'style.css'));
-
+        this.loadStylesheet(join(__dirname, 'style.css'));
     };
     
     pluginWillUnload () {
     
-        unloadStyle(join(__dirname, 'style.css'));
         uninject('gb-badges-users')
         uninject('gb-badges-users-render');
         uninject('gb-badges-users-update');
@@ -99,6 +97,26 @@ async injectUsers () {
     // BD Devs
     if (badges.BD) {
       res.props.children.push(render(Badges.BDDevs, 'BDDevs'));
+    }
+
+    // EN Devs
+    if (badges.enmity && badges.enmity.dev) {
+      res.props.children.push(render(Badges.EnDevs, 'ENDevs', badges.enmity.dev.data));
+    }
+
+    // EN Contributors
+    if (badges.enmity && badges.enmity.contributor) {
+      res.props.children.push(render(Badges.EnDevs, 'ENContributor', badges.enmity.contributor.data));
+    }
+
+    // EN Staff
+    if (badges.enmity && badges.enmity.staff) {
+      res.props.children.push(render(Badges.EnStaff, 'ENStaff', badges.enmity.staff.data));
+    }
+
+    // EN supporter
+    if (badges.enmity && badges.enmity.supporter) {
+      res.props.children.push(render(Badges.EnSupporter, 'ENSupporter', badges.enmity.supporter.data));
     }
 
     return res;

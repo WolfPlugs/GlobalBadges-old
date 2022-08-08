@@ -29,6 +29,8 @@ const BDB = React.memo(({ name, img, tooltipPosition, gap }) => (
   </Base>
 ));
 
+/* Aliucord Badges */
+
 // const aliucordDev = React.memo(({ name, img, tooltipPosition, gap }) => (
 //   <Base
 //     tooltipPosition={tooltipPosition}
@@ -65,6 +67,8 @@ const aliucordDono = React.memo(({ tooltipPosition, gap }) => (
   </Base>
 ));
 
+
+/* Better Discord Badges */
 const BDDevs = React.memo(({ tooltipPosition, gap }) => (
   <Base
     tooltipPosition={tooltipPosition}
@@ -77,10 +81,68 @@ const BDDevs = React.memo(({ tooltipPosition, gap }) => (
   </Base>
 ));
 
+
+/* Enmity Badges */
+const EnDevs = React.memo(({ name, url, tooltipPosition, gap }) => (
+  <Base
+    tooltipPosition={tooltipPosition}
+    onClick={(() => void 0)}
+    className='gb-badge-EnDevs'
+    tooltip={name}
+    gap={gap}
+  >
+    <img src={url.dark} alt={name}/>
+  </Base>
+));
+
+const EnCon = React.memo(({ name, url, tooltipPosition, gap }) => (
+  <Base
+    tooltipPosition={tooltipPosition}
+    onClick={(() => void 0)}
+    className='gb-badge-EnContributor'
+    tooltip={name}
+    gap={gap}
+  >
+    <img src={url.dark} alt={name}/>
+  </Base>
+));
+
+const EnStaff = React.memo(({ name, url, tooltipPosition, gap }) => (
+  <Base
+    tooltipPosition={tooltipPosition}
+    onClick={(() => void 0)}
+    className='gb-badge-EnStaff'
+    tooltip={name}
+    gap={gap}
+  >
+    <img src={url.dark} alt={name}/>
+  </Base>
+));
+
+const EnSupporter = React.memo(({ name, url, tooltipPosition, gap }) => (
+  <Base
+    tooltipPosition={tooltipPosition}
+    onClick={(() => void 0)}
+    className='gb-badge-EnSupporter'
+    tooltip={name}
+    gap={gap}
+  >
+    <img src={url.dark} alt={name}/>
+  </Base>
+));
+
+
 module.exports = {
   BDB,
-  // aliucordDev,
+  // Better Discord
   BDDevs,
+  // Aliucord
+  // aliucordDev,
   aliucordContr,
-  aliucordDono
+  aliucordDono,
+  // Enmity
+  EnDevs,
+  EnCon,
+  EnStaff,
+  EnSupporter
 };
