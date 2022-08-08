@@ -16,6 +16,20 @@
     height: 100%;
     object-fit: contain;
   }
+
+  .gb-badge-aliucordContributor img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .gb-badge-aliucordDonor img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  
   
   .topSection-13QKHs .profileBadge22-3GAYRy, .profile-3qfB4q .profileBadge22-3GAYRy {
     width: 24px;

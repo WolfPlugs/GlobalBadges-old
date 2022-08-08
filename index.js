@@ -15,12 +15,14 @@ module.exports = class GlobalBadges extends Plugin {
 
     startPlugin() {
         this.injectUsers();
+        loadStyle(join(__dirname, 'style.css'));
+
     };
     
     pluginWillUnload () {
-        const styleId = loadStyle(join(__dirname, 'style.css'));
     
-        unloadStyle(styleId);
+        unloadStyle(join(__dirname, 'style.css'));
+        uninject('gb-badges-users')
         uninject('gb-badges-users-render');
         uninject('gb-badges-users-update');
         uninject('gb-badges-users-fetch');
@@ -74,7 +76,7 @@ async injectUsers () {
     const render = (Component, key, props = {}) => (
       React.createElement(Component, {
         key: `gb-${key}`,
-        color: badges.custom && badges.custom.color,
+        // color: badges.custom && badges.custom.color,
         ...props
       })
     );
@@ -83,11 +85,15 @@ async injectUsers () {
       res.props.children.push(render(Badges.BDB, 'bdb', badges.BDB));
     }
 
-    // Contributor
+    // Aliucord Contributor
     if (badges.aliucord && badges.aliucord.find(r => r == 'contributor')) {
       const con = badges.aliucord.find(r => r == 'contributor')
+      res.props.children.push(render(Badges.aliucordContr, 'aliucordContributor'));
+    }
 
-      res.props.children.push(render(con, 'aliucordContributor', con));
+    // Aliucord Donor
+    if (badges.aliucord && badges.aliucord.find(r => r == 'donor')) {
+      res.props.children.push(render(Badges.aliucordDono, 'aliucordDonor'));
     }
 
     return res;

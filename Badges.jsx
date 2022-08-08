@@ -20,7 +20,7 @@ const Base = React.memo(({ color, tooltip, tooltipPosition, onClick, className, 
 const BDB = React.memo(({ name, img, tooltipPosition, gap }) => (
   <Base
     tooltipPosition={tooltipPosition}
-    onClick={() => openModal(DonateModal)}
+    onClick={(() => void 0)}
     className='gb-badge-bdb'
     tooltip={name}
     gap={gap}
@@ -29,23 +29,23 @@ const BDB = React.memo(({ name, img, tooltipPosition, gap }) => (
   </Base>
 ));
 
-const aliucordDev = React.memo(({ name, img, tooltipPosition, gap }) => (
-  <Base
-    tooltipPosition={tooltipPosition}
-    onClick={() => openModal(DonateModal)}
-    className='gb-badge-aliDev'
-    tooltip={name}
-    gap={gap}
-  >
-    <img src={img} alt='Aliucord Developer'/>
-  </Base>
-));
+// const aliucordDev = React.memo(({ name, img, tooltipPosition, gap }) => (
+//   <Base
+//     tooltipPosition={tooltipPosition}
+//     onClick={(() => void 0)}
+//     className='gb-badge-aliDev'
+//     tooltip={name}
+//     gap={gap}
+//   >
+//     <img src={img} alt='Aliucord Developer'/>
+//   </Base>
+// ));
 
 const aliucordContr = React.memo(({ tooltipPosition, gap }) => (
   <Base
     tooltipPosition={tooltipPosition}
-    onClick={() => openModal(DonateModal)}
-    className='gb-badge-aliContr'
+    onClick={(() => void 0)}
+    className='gb-badge-aliucordContributor'
     tooltip='Aliucord Contributor'
     gap={gap}
   >
@@ -53,12 +53,12 @@ const aliucordContr = React.memo(({ tooltipPosition, gap }) => (
   </Base>
 ));
 
-const aliucordDono = React.memo(({ name, img, tooltipPosition, gap }) => (
+const aliucordDono = React.memo(({ tooltipPosition, gap }) => (
   <Base
     tooltipPosition={tooltipPosition}
-    onClick={() => openModal(DonateModal)}
-    className='gb-badge-aliDono'
-    tooltip={name}
+    onClick={(() => void 0)}
+    className='gb-badge-aliucordDonor'
+    tooltip='Aliucord Donor'
     gap={gap}
   >
     <img src='https://cdn.discordapp.com/emojis/859801776232202280.webp' alt='Aliucord Donor'/>
@@ -67,7 +67,7 @@ const aliucordDono = React.memo(({ name, img, tooltipPosition, gap }) => (
 
 module.exports = {
   BDB,
-  aliucordDev,
+  // aliucordDev,
   aliucordContr,
   aliucordDono
 };
