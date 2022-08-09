@@ -48,7 +48,7 @@ async injectUsers () {
     
       React.useEffect(async () => {
         if (!cache[userId] || cache[userId].lastFetch < Date.now() - REFRESH_INTERVAL) {
-        cache[userId] = await get(`https://api.obamabot.cf/v2/text/badges?user=${userId}`)
+        cache[userId] = await get(`https://api.obamabot.me/v2/text/badges?user=${userId}`)
           .catch((e) => e)
           .then((res) => {
             if (res.statusCode === 200 || res.statusCode === 404) {
