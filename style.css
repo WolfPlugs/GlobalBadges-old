@@ -57,6 +57,24 @@
     object-fit: contain;
   }
 
+  /* GooseMod Badges */
+  .gb-badge-GMSponsor img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .gb-badge-GMTranslaor img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  } 
+
+  .gb-badge-GMDeveloper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
   
   
   .topSection-13QKHs .profileBadge22-3GAYRy, .profile-3qfB4q .profileBadge22-3GAYRy {

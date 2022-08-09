@@ -131,6 +131,42 @@ const EnSupporter = React.memo(({ name, url, tooltipPosition, gap }) => (
   </Base>
 ));
 
+/* GooseMod */
+const GMSponsor = React.memo(({ tooltipPosition, gap }) => (
+  <Base
+    tooltipPosition={tooltipPosition}
+    onClick={(() => void 0)}
+    className='gb-badge-GMSponsor'
+    tooltip='GooseMod Sponsor'
+    gap={gap}
+  >
+    <img src='https://goosemod.com/img/goose_gold.jpg' alt='GooseMod Sponsor'/>
+  </Base>
+));
+
+const GMTranslator = React.memo(({ tooltipPosition, gap }) => (
+  <Base
+    tooltipPosition={tooltipPosition}
+    onClick={(() => void 0)}
+    className='gb-badge-GMTranslaor'
+    tooltip='GooseMod Translator'
+    gap={gap}
+  >
+    <img src='https://goosemod.com/img/goose_globe.png' alt='GooseMod Translator'/>
+  </Base>
+));
+
+const GMDeveloper = React.memo(({ tooltipPosition, gap }) => (
+  <Base
+    tooltipPosition={tooltipPosition}
+    onClick={(() => void 0)}
+    className='gb-badge-GMDeveloper'
+    tooltip='GooseMod Developer'
+    gap={gap}
+  >
+    <img src='https://goosemod.com/img/goose_glitch.jpg' alt='GooseMod Developer'/>
+  </Base>
+));
 
 module.exports = {
   BDB,
@@ -144,5 +180,9 @@ module.exports = {
   EnDevs,
   EnCon,
   EnStaff,
-  EnSupporter
+  EnSupporter,
+  // GooseMod
+  GMSponsor,
+  GMTranslator,
+  GMDeveloper
 };

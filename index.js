@@ -84,6 +84,8 @@ async injectUsers () {
       res.props.children.push(render(Badges.BDB, 'bdb', badges.BDB));
     }
 
+    // Aliucord
+
     // Aliucord Contributor
     if (badges.aliucord && badges.aliucord.find(r => r == 'contributor')) {
 -      res.props.children.push(render(Badges.aliucordContr, 'aliucordContributor'));
@@ -94,10 +96,14 @@ async injectUsers () {
       res.props.children.push(render(Badges.aliucordDono, 'aliucordDonor'));
     }
 
+    // Better Discord
+
     // BD Devs
     if (badges.BD) {
       res.props.children.push(render(Badges.BDDevs, 'BDDevs'));
     }
+
+    // Enmity
 
     // EN Devs
     if (badges.enmity && badges.enmity.dev) {
@@ -117,6 +123,23 @@ async injectUsers () {
     // EN supporter
     if (badges.enmity && badges.enmity.supporter) {
       res.props.children.push(render(Badges.EnSupporter, 'ENSupporter', badges.enmity.supporter.data));
+    }
+
+    // Goosemode
+
+    // GM Sponsor
+    if (badges.goosemod && badges.goosemod.sponsor) {
+      res.props.children.push(render(Badges.GMSponsor, 'GMSponsor'));
+    }
+
+    // GM Sponsor
+    if (badges.goosemod && badges.goosemod.dev) {
+      res.props.children.push(render(Badges.GMTranslator, 'GMTranslator'));
+    }
+    
+    // GM Sponsor
+    if (badges.goosemod && badges.goosemod.translator) {
+      res.props.children.push(render(Badges.GMDeveloper, 'GMDeveloper'));
     }
 
     return res;
