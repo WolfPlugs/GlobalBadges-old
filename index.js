@@ -87,13 +87,18 @@ async injectUsers () {
     // Aliucord
 
     // Aliucord Contributor
-    if (badges.aliucord && badges.aliucord.find(r => r == 'contributor')) {
+    if (badges.aliu && badges.aliu.roles.find(r => r == 'contributor')) {
 -      res.props.children.push(render(Badges.aliucordContr, 'aliucordContributor'));
     }
 
     // Aliucord Donor
-    if (badges.aliucord && badges.aliucord.find(r => r == 'donor')) {
+    if (badges.aliu && badges.aliucord.roles.find(r => r == 'donor')) {
       res.props.children.push(render(Badges.aliucordDono, 'aliucordDonor'));
+    }
+
+    // Aliucord Custom Badge
+    if (badges.aliu && badges.aliu.custom) {
+      res.props.children.push(render(Badges.aliucordCustom, 'aliucordCustom', badges.aliu.custom));
     }
 
     // Better Discord
