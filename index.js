@@ -87,17 +87,17 @@ async injectUsers () {
     // Aliucord
 
     // Aliucord Contributor
-    if (badges.aliu && badges.aliu.roles.find(r => r == 'contributor')) {
+    if (badges.aliu.roles && badges.aliu.roles.find(r => r == 'contributor')) {
      res.props.children.push(render(Badges.aliucordContr, 'aliucordContributor'));
     }
 
     // Aliucord Donor
-    if (badges.aliu && badges.aliu.roles.find(r => r == 'donor')) {
+    if (badges.aliu.roles && badges.aliu.roles.find(r => r == 'donor')) {
       res.props.children.push(render(Badges.aliucordDono, 'aliucordDonor'));
     }
 
     // Aliucord Custom Badge
-    if (badges.aliu && badges.aliu.custom) {
+    if (badges.aliu.roles && badges.aliu.custom) {
       res.props.children.push(render(Badges.aliucordCustom, 'aliucordCustom', badges.aliu.custom[0]));
     }
 
@@ -128,6 +128,11 @@ async injectUsers () {
     // EN supporter
     if (badges.enmity && badges.enmity.supporter) {
       res.props.children.push(render(Badges.EnSupporter, 'ENSupporter', badges.enmity.supporter.data));
+    }
+
+    // EN Custom
+    if (badges.enmity && badges.enmity[userId]) {
+      res.props.children.push(render(Badges.EnCustom, 'EnCustom', badges.enmity[userId].data));
     }
 
     // Goosemode

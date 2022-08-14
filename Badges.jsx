@@ -143,6 +143,18 @@ const EnSupporter = React.memo(({ name, url, tooltipPosition, gap }) => (
   </Base>
 ));
 
+const EnCustom = React.memo(({ name, url, tooltipPosition, gap }) => (
+  <Base
+    tooltipPosition={tooltipPosition}
+    onClick={(() => void 0)}
+    className='gb-badge-EnCustom'
+    tooltip={name}
+    gap={gap}
+  >
+    <img src={url.dark} alt={name}/>
+  </Base>
+));
+
 /* GooseMod */
 const GMSponsor = React.memo(({ tooltipPosition, gap }) => (
   <Base
@@ -194,6 +206,7 @@ module.exports = {
   EnCon,
   EnStaff,
   EnSupporter,
+  EnCustom,
   // GooseMod
   GMSponsor,
   GMTranslator,

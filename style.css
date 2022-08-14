@@ -63,6 +63,12 @@
     object-fit: contain;
   }
 
+  .gb-badge-EnCustom img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
   /* GooseMod Badges */
   .gb-badge-GMSponsor img {
     width: 100%;
