@@ -96,10 +96,16 @@ async injectUsers () {
       res.props.children.push(render(Badges.aliucordDono, 'aliucordDonor'));
     }
 
+    // Aliucord Staff
+    if (badges.aliu.roles && badges.aliu.roles.find(r => r == 'dev')) {
+      res.props.children.push(render(Badges.aliucordDev, 'aliucordDev'));
+    }
+
     // Aliucord Custom Badge
     if (badges.aliu.roles && badges.aliu.custom) {
       res.props.children.push(render(Badges.aliucordCustom, 'aliucordCustom', badges.aliu.custom[0]));
     }
+    
 
     // Better Discord
 

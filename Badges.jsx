@@ -67,6 +67,19 @@ const aliucordDono = React.memo(({ tooltipPosition, gap }) => (
   </Base>
 ));
 
+/* Better Discord Badges */
+const aliucordDev = React.memo(({ tooltipPosition, gap }) => (
+  <Base
+    tooltipPosition={tooltipPosition}
+    onClick={(() => void 0)}
+    className='gb-badge-aliucordDev'
+    tooltip='Aliucord Dev'
+    gap={gap}
+  >
+    <Icons.DiscordStaff/>
+  </Base>
+));
+
 const aliucordCustom = React.memo(({ text, url, tooltipPosition, gap }) => (
   <Base
     tooltipPosition={tooltipPosition}
@@ -197,7 +210,7 @@ module.exports = {
   // Better Discord
   BDDevs,
   // Aliucord
-  // aliucordDev,
+  aliucordDev,
   aliucordContr,
   aliucordDono,
   aliucordCustom,
