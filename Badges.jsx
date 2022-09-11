@@ -31,18 +31,6 @@ const BDB = React.memo(({ name, img, tooltipPosition, gap }) => (
 
 /* Aliucord Badges */
 
-// const aliucordDev = React.memo(({ name, img, tooltipPosition, gap }) => (
-//   <Base
-//     tooltipPosition={tooltipPosition}
-//     onClick={(() => void 0)}
-//     className='gb-badge-aliDev'
-//     tooltip={name}
-//     gap={gap}
-//   >
-//     <img src={img} alt='Aliucord Developer'/>
-//   </Base>
-// ));
-
 const aliucordContr = React.memo(({ tooltipPosition, gap }) => (
   <Base
     tooltipPosition={tooltipPosition}
@@ -51,7 +39,7 @@ const aliucordContr = React.memo(({ tooltipPosition, gap }) => (
     tooltip='Aliucord Contributor'
     gap={gap}
   >
-    <img src='https://cdn.discordapp.com/emojis/886587553187246120.webp' alt='Aliucord Contributor'/>
+    <Icons.aliucordContributor/>
   </Base>
 ));
 
@@ -67,7 +55,6 @@ const aliucordDono = React.memo(({ tooltipPosition, gap }) => (
   </Base>
 ));
 
-/* Better Discord Badges */
 const aliucordDev = React.memo(({ tooltipPosition, gap }) => (
   <Base
     tooltipPosition={tooltipPosition}
